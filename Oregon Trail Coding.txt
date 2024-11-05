@@ -1,0 +1,4223 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+
+void Start_Menu();
+void Game_Overview();
+void Transition_Part_1();
+void Transition_Part_2();
+void Transition_Rotation();
+void character_choice();
+void name1();
+void Month();
+void Day();
+void Month_Print();
+void Before_Leave();
+void Matt_Starting_intro();
+void Matt_Intro_A1();
+void Matt_Intro_B1();
+void Matts_Store();
+void Starting_Intro();
+void Main_Menu();
+void Main_Menu_Display();
+void Main_Menu_Supplies();
+void Main_Menu_Map();
+void Main_Menu_Pace();
+void Main_Menu_Rations();
+void Main_Menu_Rest();
+void Main_Menu_Trading();
+void Main_Menu_Talk();
+void Main_Menu_Shop();
+void Main_Menu_Display_2();
+void Main_Menu_Hunting();
+
+void Average_Health_Print();
+void Average_Health();
+void Pace_Print();
+void Pace_Change();
+void Rations_Print();
+void New_Line();
+void Press_Enter();
+void HotBar();
+void Month_Updater();
+void Miles_Traveled();
+void Oregon_Miles();
+void Weather();
+void Day_Print();
+void Food_2000_Max();
+void Food_Updater();
+void Cabin_Transition_Part_1();
+void Cabin_Transition_Part_2();
+void Cabin_Transition_Part_3();
+void Cabin_Transition_Part_4();
+void Cabin_Transition_Printer();
+void Cabin_Arrival_Choices();
+
+void River_Transition_Part_1();
+void River_Transition_Part_2();
+void River_Transition_Part_3();
+void River_Transition_Part_4();
+void River_Transition_Printer();
+void River_Arrival_Choices();
+
+void Transition_1();
+void River_Main_Menu();
+void River_Crossing_Intro();
+void Random_River_Dimentions();
+void River_Crossing();
+void Transition_Mixer();
+int Everyone_Is_Dead();
+int Out_Of_Oxen();
+void Consequences();
+void Rations_Health_Updater();
+void Pace_Health_Updater();
+void Weather_Health_Updater();
+void Food_Killer();
+void Death_Printer();
+void Food_Equals_Zero();
+void Player_Sickness_Updater();
+void Player_Sickness_Printer();
+void Player_Sickness_Damage();
+void Player_Health_Equals_Zero();
+void Player_Sickness_Recovery();
+void Disease_Name_Print();
+void Clothing_Weather_Damage_Updater();
+void Speed_Decrease();
+void Freak_Accidents();
+void Lost_River_Items();
+
+void Game_Over();
+
+
+
+
+//Public Variables
+int choice1;
+int choice = 0;
+char leader[20];
+char Player1[20];
+char Player2[20];
+char Player3[20];
+char Player4[20];
+int month = 6;
+char month1[20];
+float money;
+float Oxen = 0;
+float Oxen_Yoke = 0;
+float Food = 0;
+float Clothing = 0;
+float Ammunition = 0;
+float Spare_parts = 0;
+int store_choice = 0;
+int Hunting_Choice = 0;
+float Money_Total = 0;
+float Wagon_Wheel = 0;
+float Wagon_Axle = 0;
+float Wagon_Tongue = 0;
+float Bullets;
+int Menu_choice;
+int pace = 1;
+int Speed = 10;
+int Pace_Change_Choice = 1;
+int rations = 1;
+int Health = 100;
+float Player_1_Health = 100;
+float Player_2_Health = 100;
+float Player_3_Health = 100;
+float Player_4_Health = 100;
+float Player_5_Health = 100;
+int Day_Count = 0;
+int Main_Day = 0;
+int Month_Number;
+int Miles = 0;
+int Consumption = 0;
+int Player_1_Alive = 1;
+int Player_2_Alive = 1;
+int Player_3_Alive = 1;
+int Player_4_Alive = 1;
+int Player_5_Alive = 1;
+int Transition_Increment = 1;
+int Update = 30;
+int Next_Landmark_Counter = 0;
+int Counter = 0;
+int River_Increment = 1;
+int Cabin_Increment = 1;
+float River_Width = 0;
+float River_Height = 0;
+int River_Choice = 0;
+float Pay_Ferry_Owner = 0;
+int Random_Transition = 0;
+float Average;
+int Single_Print_1 = 0;
+int Single_Print_2 = 0;
+int Single_Print_3 = 0;
+int Single_Print_4 = 0;
+int Single_Print_5 = 0;
+int Food_Counter = 0;
+int Dysentery = 0;
+int Smallpox = 0;
+int Measles = 0;
+int Mumps = 0;
+int Influenza = 0;
+int Player_1_Disease = 0;
+int Player_2_Disease = 0;
+int Player_3_Disease = 0;
+int Player_4_Disease = 0;
+int Player_5_Disease = 0;
+int Player_1_Recovery = 0;
+int Player_2_Recovery = 0;
+int Player_3_Recovery = 0;
+int Player_4_Recovery = 0;
+int Player_5_Recovery = 0;
+int Day_Counter1 = 0;
+int Day_Counter2 = 0;
+int Day_Counter3 = 0;
+int Day_Counter4 = 0;
+int Day_Counter5 = 0;
+int Disease_Name = 0;
+int First_Day_Counter = 1;
+int Cold_Minus = 0;
+int River_Reprint = 1;
+int Do_Not_Print_Wheels = 0;
+int Do_Not_Print_Axles = 0;
+int Do_Not_Print_Tongues = 0;
+int Oxen_Reminder = 0;
+int Floating_Enter = 0;
+int Oxen_Loss = 0;
+int Everyone_Dead_Loss = 0;
+int Oregon = 0;
+int Skip_Death = 0;
+//landmarks
+int landmark_1 = 10000;
+int landmark_2 = 86;
+
+
+
+int main()
+{
+        srand(time(NULL));
+        Game_Overview();
+        if(Skip_Death == 0)
+        {
+                Game_Over();
+        }
+        return 0;
+}
+void Game_Overview()
+{
+        while(choice1 != 1)
+        {
+                Start_Menu();
+        }
+        while(!(choice == 1 || choice == 2 || choice == 3))
+        {
+                character_choice();
+        }
+                name1();
+        while(!(month == 1 || month == 2 || month == 3 || month == 4 || month == 5))
+        {
+                Month();
+        }
+                month += 2; //works with the Month
+                Before_Leave();
+                Matt_Starting_intro();
+                Matt_Intro_A1();
+                Matt_Intro_B1();
+        while(!(store_choice == 9 && Oxen_Yoke >= 1))
+        {
+                Matts_Store();
+        }
+                Starting_Intro();
+        while(Menu_choice != 1)
+        {
+                Main_Menu();
+        }
+        while(Counter < 4)
+        {
+                First_Day_Counter += 100; //works with the rest days on the first day
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                Transition_Rotation();
+                HotBar();
+        }
+        while(Counter < 8)
+        {
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                River_Transition_Printer();
+                HotBar();
+                Menu_choice = 0;
+        }
+        while(Menu_choice != 1)
+        {
+                River_Main_Menu();
+        }
+                River_Crossing_Intro();
+        while(!(River_Choice == 1 || River_Choice == 2 || River_Choice == 3))
+        {
+                River_Crossing();
+        }
+        while(Counter < 12)
+        {
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                Transition_Rotation();
+                HotBar();
+        }
+        while(Counter < 16)
+        {
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                Cabin_Transition_Printer();
+                HotBar();
+                Menu_choice = 0;
+        }
+        while(Menu_choice != 1)
+        {
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                Main_Menu();
+        }
+        New_Line();
+        while(Oregon > 0)
+        {
+                if(Everyone_Is_Dead() == 1) { return; }
+                if(Out_Of_Oxen() == 1) {return; }
+                Transition_Mixer();
+        }
+
+
+}
+void Start_Menu()
+{
+        New_Line();
+        printf("Welcome to Oregon Trail!\n\n");
+        printf("You may:\n");
+        printf("   1. Travel the trail\n");
+        printf("   2. Learn about the trail\n");
+        printf("   3. See the Oregon Top Ten\n");
+        printf("   4. Turn sound off\n");
+        printf("   5. Choose Management Options\n");
+        printf("   6. End\n");
+        printf("What is your Choice? ");
+        scanf("%d", &choice1);
+        if(choice1 == 1)
+        {
+                printf("\nLets get started! \n");
+                usleep(1000000);
+        }
+        if(choice1 == 2)
+        {
+                printf("\nThe trail is rough and treacherous make sure you have enough food.\n\n");
+                usleep(4000000);
+        }
+        if(choice1 == 3)
+        {
+                printf("\n 1. McFlack\n 2. Gamer sweat\n 3. Harry Dotter\n 4. Redfeet\n 5. John Blow\n 6. Will Smack\n 7. C-137\n 8. RGB Toaster\n 9. Meme Man\n 10. Fortnite Couch\n\n");
+                usleep(10000000);
+        }
+        if(choice1 == 4)
+        {
+                printf("\n\nNo\n\n");
+                usleep(2000000);
+        }
+        if(choice1 == 5)
+        {
+                printf("");
+        }
+        if(choice1 == 6)
+        {
+                printf("\nShutting Down...\n");
+        }
+}
+
+void character_choice()
+{
+        New_Line();
+        printf("\nMany kinds of people made the trip to Oregon.\n");
+        printf("You may:\n");
+        printf("   1. Be a banker from Boston\n");
+        printf("   2. Be a carpenter from Ohio\n");
+        printf("   3. Be a farmer from Illinois\n");
+        printf("   4. Find out the differences between these choices\n");
+        printf("What is your choice? ");
+        scanf("%d", &choice);
+        if(choice == 1)
+        {
+                money = 1600;
+        }
+        if(choice == 2)
+        {
+                money = 800;
+        }
+        if(choice == 3)
+        {
+                money = 400;
+        }
+        if(choice == 4)
+        {
+                New_Line();
+                printf("Traveling to Oregon isn't easy!\n");
+                printf("But if you're a banker, you'll have more money for supplies\n");
+                printf("and services than a carpenter or a farmer.\n");
+                printf("However, the harder you have to try, the more points you deserve!\n");
+                printf("Therefore, the farmer earns the greatest number of points\n");
+                printf("and the banker earns the least.\n");
+                Press_Enter();
+        }
+        New_Line();
+}
+void name1()
+{
+        printf("\nWhat is the first name of the wagon leader? ");
+        scanf("%19s", leader);
+        New_Line();
+        printf("\nWhat are the first names of the four other members in your party?\n");
+        printf(" 1.%s\n", leader);
+        printf(" 2.");
+        scanf("%19s", Player1);
+        printf(" 3.");
+        scanf("%19s", Player2);
+        printf(" 4.");
+        scanf("%19s", Player3);
+        printf(" 5.");
+        scanf("%19s", Player4);
+        New_Line();
+}
+void Month()
+{
+        printf("It is 1848. Your jumping off place for Oregon is Independence, Missouri.\n");
+        printf("You must decide which month to leave Independence.\n");
+        printf(" 1. March\n");
+        printf(" 2. April\n");
+        printf(" 3. May\n");
+        printf(" 4. June\n");
+        printf(" 5. July\n");
+        printf(" 6. Ask for advise\n");
+        printf("What is your choice? ");  //Fix this
+        scanf("%1d", &month);
+        if(month == 6)
+        {
+                New_Line();
+                printf("If you leave too early, there won't be any grass for your oxen to eat.\n");
+                printf("If you leave too late, you may not get to Oregon before winter comes.\n");
+                printf("If you leave at just the right time, there will be green grass\n");
+                printf("and the weather will still be cool.\n");
+                Press_Enter();
+                New_Line();
+        }
+}
+void Before_Leave()
+{
+        New_Line();
+        printf("Before leaving Independence you\n");
+        printf("should buy equipment and\n");
+        printf("supplies. You have $%.2f in\n", money);
+        printf("cash, but you don't have to\n");
+        printf("spend it all now.\n");
+        Press_Enter();
+        New_Line();
+}
+void Matt_Starting_intro()
+{
+        Floating_Enter = 1;  //Works with the Press_Enter() function
+        printf("You can buy whatever you need at Matt's General Store.\n");
+        Press_Enter();
+}
+void Matt_Intro_A1()
+{
+        New_Line();
+        printf("Hello, I'm Matt.  So you're going to Oregon!\n");
+        printf("I can fix you up with what you need:\n\n");
+        printf("    - a team of oxen to pull your wagon\n");
+        printf("    - clothing for both summer and winter\n");
+        Press_Enter();
+}
+void Matt_Intro_B1()
+{
+        New_Line();
+        printf("Hello, I'm Matt.  So you're going to Oregon!\n");
+        printf("I can fix you up with what you need:\n\n");
+        printf("    - plenty of food for the trip\n");
+        printf("    - ammunition for your rifles\n");
+        printf("    - spare parts for your wagon\n");
+        Press_Enter();
+        Floating_Enter = 0;  //Works with the Press_Enter() function
+}
+void Matts_Store()
+{
+        New_Line(); //remove this
+        float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+        Money_Total = money - Bill;
+        float Oxen_price = Oxen_Yoke * 40;
+        float Food_price = Food * .2;
+        float Clothing_price = Clothing * 10;
+        float Ammunition_price = Ammunition * 2;
+        float Spare_parts_price = Spare_parts * 10;
+
+        if(store_choice == 9 && Oxen_Yoke < 1)
+        {
+                printf("Don't forget! You need\n");
+                printf("an oxen to pull your wagon!\n\n");
+        }
+        printf("\033[0;31m");
+        printf("==========================\n");
+        printf("\033[0m");
+        printf("   Matt's General Store\n");
+        printf("  Independence, Missouri\n");
+        printf("       ");
+        Month_Print();
+        printf(" 1, 1848\n");
+        printf("\033[0;31m");
+        printf("==========================\n");
+        printf("\033[0m");
+        printf("1. Oxen              $%.2f\n", Oxen_price);
+        printf("2. Food              $%.2f\n", Food_price);
+        printf("3. Clothing          $%.2f\n", Clothing_price);
+        printf("4. Ammunition        $%.2f\n", Ammunition_price);
+        printf("5. Spare parts       $%.2f\n", Spare_parts_price);
+        printf("\033[0;31m");
+        printf("==========================\n");
+        printf("\033[0m");
+        printf("         Total bill: $%.2f\n\n", Bill);
+        printf("Amount you have:     $%.2f\n\n", Money_Total);
+        printf("Press ");
+        printf("9");
+        printf(" to exit the Store.\n");
+        printf("\033[0;31m");
+        printf("      ˉ\n");
+        printf("\033[0m");
+        printf("Which item would you like to buy? ");
+        scanf("%1d", &store_choice);
+
+
+        if(store_choice == 1)
+        {
+                New_Line();
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("   Matt's General Store\n");
+                printf("  Independence, Missouri\n");
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("\n\n");
+                printf("There are 2 oxen in a yoke;\n");
+                printf("I recommend at least 3 yoke.\n\n");
+                printf("I charge $40 a yoke.\n\n");
+                printf("How many yoke do you want? ");
+                scanf("%f", &Oxen_Yoke);
+                if(Oxen_Yoke * 40 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Oxen = 0;
+                        usleep(1*1000000);
+                }
+                float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                Oxen = Oxen_Yoke * 2;
+                printf("\n\n\n\n\n\n\n");
+                printf("Bill so far: $%.2f\n", Bill);
+                usleep(1.5*1000000);
+                New_Line();
+        }
+        if(store_choice == 2)
+{
+                New_Line();
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("   Matt's General Store\n");
+                printf("  Independence, Missouri\n");
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("\n");
+                printf("I recommend you take at\n");
+                printf("least 200 pounds of food\n");
+                printf("for each person in your\n");
+                printf("family. I see that you\n");
+                printf("have 5 people is all.\n");
+                printf("You'll need flour, sugar,\n");
+                printf("bacon, and coffee.\n\n");
+                printf("My price is 20 cents a pound.\n\n");
+                printf("How many pounds of food do you want? ");
+                scanf("%f", &Food);
+                if(Food * .2 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Food = 0;
+                        usleep(1*1000000);
+                }
+                float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                printf("\n\n\n\n\n\n\n");
+                printf("Bill so far: $%.2f\n", Bill);
+                usleep(1.5*1000000);
+                New_Line();
+}
+        if(store_choice == 3)
+{
+                New_Line();
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("   Matt's General Store\n");
+                printf("  Independence, Missouri\n");
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("\n");
+                printf("You'll need warm clothing in\n");
+                printf("the mountains. I recommend\n");
+                printf("taking at least 2 sets of\n");
+                printf("clothes per person.\n\n");
+                printf("Each set is $10.00.\n\n");
+                printf("How many sets of clothes do you want? ");
+                scanf("%f", &Clothing);
+                if(Clothing * 10 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Clothing = 0;
+                        usleep(1*1000000);
+                }
+                float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                printf("\n\n\n\n\n\n\n");
+                printf("Bill so far: $%.2f\n", Bill);
+                usleep(1.5*1000000);
+                New_Line();
+}
+        if(store_choice == 4)
+{
+                New_Line();
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("   Matt's General Store\n");
+                printf("  Independence, Missouri\n");
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("\n");
+                printf("I sell ammunition in boxes\n");
+                printf("of 20 bullets.\n\n");
+                printf("Each box costs $2.00.\n\n");
+                printf("How many boxes do you want? ");
+                scanf("%f", &Ammunition);
+                if(Ammunition * 2 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Ammunition = 0;
+                        usleep(1*1000000);
+                }
+                float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                printf("\n\n\n\n\n\n\n");
+                printf("Bill so far: $%.2f\n", Bill);
+                usleep(1.5*1000000);
+                New_Line();
+}
+        if(store_choice == 5)
+{
+                New_Line();
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("   Matt's General Store\n");
+                printf("  Independence, Missouri\n");
+                printf("\033[0;31m");
+                printf("==========================\n");
+                printf("\033[0m");
+                printf("\n");
+                printf("It's a good idea to have a\n");
+                printf("few spare parts for your\n");
+                printf("wagon. Here are the prices:\n\n");
+                printf("wagon wheel - $10 each\n");
+                printf("wagon axle - $10 each\n");
+                printf("wagon tongue - $10 each\n\n");
+                printf("How many wagon wheels? ");
+                scanf("%f", &Wagon_Wheel);
+                printf("How many wagon axles? ");
+                scanf("%f", &Wagon_Axle);
+                printf("How many wagon tongues? ");
+                scanf("%f", &Wagon_Tongue);
+                if(Wagon_Wheel * 10 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Wagon_Wheel = 0;
+                        usleep(1*1000000);
+                }
+                if(Wagon_Axle * 10 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Wagon_Axle = 0;
+                        usleep(1*1000000);
+                }
+                if(Wagon_Tongue * 10 > Money_Total)
+                {
+                        printf("\033[0;31m");
+                        printf("\n\n\n\nYour Broke!\n");
+                        printf("\033[0m");
+                        Wagon_Tongue = 0;
+                        usleep(1*1000000);
+                }
+                Spare_parts = Wagon_Wheel + Wagon_Axle + Wagon_Tongue;
+                float Bill = Oxen_Yoke * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                printf("\n\n\n\n\n\n\n");
+                printf("Bill so far: $%.2f\n", Bill);
+                usleep(1.5*1000000);
+                New_Line();
+}
+}
+void Starting_Intro()
+{
+        New_Line();
+        printf("Well then, you're ready\n");
+        printf("to start. Good luck!\n");
+        printf("You have a long and\n");
+        printf("difficult journey ahead\n");
+        printf("of you.\n\n");
+        Press_Enter();
+}
+
+void Main_Menu_Display()
+{
+        Food_Equals_Zero();
+        New_Line();
+        if(First_Day_Counter == 1 || First_Day_Counter == 2 || First_Day_Counter == 3 || First_Day_Counter == 4)
+        {
+                printf("      Independence\n");
+        }
+        else
+        {
+                printf("        Cabin Menu\n");
+        }
+        printf("      ");
+        Month_Print();
+        if(First_Day_Counter == 1)
+        {
+                printf(" 1, 1848\n");
+                First_Day_Counter += 1;
+        }
+        else
+        {
+                printf(" %d, 1848\n", Main_Day);
+        }
+        printf("Weather: ");
+        Weather();
+        printf("\n");
+        printf("Health: ");
+        Average_Health_Print();
+        printf("\n");
+        printf("Pace: ");
+        Pace_Print();
+        printf("\n");
+        printf("Rations: ");
+        Rations_Print();
+        printf("\n");
+        printf("You may:\n");
+        printf("  1. Continue on trail\n");
+        printf("  2. Check supplies\n");
+        printf("  3. Look at map\n");
+        printf("  4. Change pace\n");
+        printf("  5. Change food rations\n");
+        printf("  6. Stop to rest\n");
+        printf("  7. Attempt to trade\n");
+        printf("  8. Talk to people\n");
+        printf("  9. Buy supplies\n\n");
+        printf("What is your choice? ");
+        scanf("%1d", &Menu_choice);
+}
+void Main_Menu_Supplies()
+{
+                        New_Line();
+                        int Useless;
+                        float Bill = Oxen * 40 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                        Money_Total = money - Bill;
+                        Bullets = Ammunition * 20;
+                        printf("      Your Supplies\n\n");
+                        printf("Oxen                %.0f\n", Oxen);
+                        printf("Sets of Clothing    %.0f\n", Clothing);
+                        printf("Bullets             %.0f\n", Bullets);
+                        printf("Wagon Wheels        %.0f\n", Wagon_Wheel);
+                        printf("Wagon Axles         %.0f\n", Wagon_Axle);
+                        printf("Wagon Tongues       %.0f\n", Wagon_Tongue);
+                        printf("Pounds of Food      %.0f\n", Food);
+                        printf("Money              $%.2f\n", Money_Total);
+                        printf("\n\n\n\n");
+                        Press_Enter();
+}
+void Main_Menu_Map()
+{
+        New_Line();
+        if(Miles >= 2000)
+        {
+                printf("      You have traveled %d Miles\n\n", Miles);
+                printf("\033[0;31m");
+                printf("----------------------------------------\n");
+                printf("\033[0m");
+                printf("                   ^\n");
+                printf("                HalfWay\n");
+        }
+        else if(Miles >= 1500)
+        {
+                printf("      You have traveled %d Miles\n\n", Miles);
+                printf("\033[0;31m");
+                printf("------------------------------");
+                printf("\033[0m");
+                printf("----------\n");
+                printf("                   ^\n");
+                printf("                HalfWay\n");
+        }
+        else if(Miles >= 1000)
+        {
+                printf("      You have traveled %d Miles\n\n", Miles);
+                printf("\033[0;31m");
+                printf("--------------------");
+                printf("\033[0m");
+                printf("--------------------\n");
+                printf("                   ^\n");
+                printf("                HalfWay\n");
+        }
+        else if(Miles >= 500)
+        {
+                printf("      You have traveled %d Miles\n\n", Miles);
+                printf("\033[0;31m");
+                printf("----------");
+                printf("\033[0m");
+                printf("------------------------------\n");
+                printf("                   ^\n");
+                printf("                HalfWay\n");
+        }
+        else if(Miles >= 0)
+        {
+                printf("      You have traveled %d Miles\n\n", Miles);
+                printf("----------------------------------------\n");
+                printf("                   ^\n");
+                printf("                HalfWay\n");
+        }
+        usleep(2*1000000);
+}
+void Main_Menu_Pace()
+{
+                        New_Line();
+                        printf("  Change pace");
+                        printf("(currently ");
+                        Pace_Print();
+                        printf(")\n\n");
+                        printf("The pace at which you travel\n");
+                        printf("can change. Your choices are:\n\n");
+                        printf(" 1. a ");
+                        printf("\033[32m");
+                        printf("steady");
+                        printf("\033[0m");
+                        printf(" pace\n");
+                        printf(" 2. a ");
+                        printf("\033[33m");
+                        printf("strenuous");
+                        printf("\033[0m");
+                        printf(" pace\n");
+                        printf(" 3. a ");
+                        printf("\033[31m");
+                        printf("grueling");
+                        printf("\033[0m");
+                        printf(" pace\n");
+                        printf(" 4. find out what these\n");
+                        printf("    different paces mean\n\n");
+                        printf("What is your choice? ");
+                        scanf("%1d", &Pace_Change_Choice);
+                        Pace_Change();
+}
+void Main_Menu_Rations()
+{
+                        New_Line();
+                        printf("Change food rations");
+                        printf("(currently ");
+                        Rations_Print();
+                        printf(")\n\n");
+                        printf("The amount of food the people in\n");
+                        printf("your party eat each day can\n");
+                        printf("change. These amounts are:\n\n");
+                        printf(" 1. ");
+                        printf("\033[32m");
+                        printf("filling");
+                        printf("\033[0m");
+                        printf(" - meals are large and\n");
+                        printf("    generous\n\n");
+                        printf(" 2. ");
+                        printf("\033[33m");
+                        printf("meager");
+                        printf("\033[0m");
+                        printf(" - meals are small, but\n");
+                        printf("    adequate\n\n");
+                        printf(" 3. ");
+                        printf("\033[31m");
+                        printf("bare bones");
+                        printf("\033[0m");
+                        printf(" - meals are very\n");
+                        printf("    small; everyone stays hungry.\n\n");
+                        printf("What is your choice ");
+                        scanf("%1d", &rations);
+                        New_Line();
+}
+void Main_Menu_Rest()
+{
+        int Resting_Days = 0; //move these to resting
+        int i = 0;
+        New_Line();
+        printf("How many days would you like to rest? ");
+        scanf("%d", &Resting_Days);
+        printf("\n\n\n");
+        while(i != Resting_Days)
+        {
+                New_Line();
+                if(First_Day_Counter == 2 || First_Day_Counter == 3 || First_Day_Counter == 4)
+                {
+                        printf("       Independence\n");
+                }
+                else
+                {
+                        printf("        Cabin Menu\n");
+                }
+                printf("      ");
+                Month_Print();
+                Day_Print();
+                printf("Weather: ");
+                Weather();
+                printf("\n");
+                printf("Health: ");
+                Average_Health_Print();
+                printf("\n");
+                printf("Pace: ");
+                Pace_Print();
+                printf("\n");
+                printf("Rations: ");
+                Rations_Print();
+                printf("\n");
+                printf("You may:\n");
+                printf("  1. Continue on trail\n");
+                printf("  2. Check supplies\n");
+                printf("  3. Look at map\n");
+                printf("  4. Change pace\n");
+                printf("  5. Change food rations\n");
+                printf("  6. Stop to rest\n");
+                printf("  7. Attempt to trade\n");
+                printf("  8. Talk to people\n");
+                printf("  9. Buy supplies\n\n");
+                Month_Updater();
+                i++;
+                usleep(1*1000000);
+        }
+        i = 0;
+}
+void Main_Menu_Trading()
+{
+                        New_Line();
+                        char yes_or_no;
+                        int r = rand() % 3;
+                        r += 1;
+
+                        printf("      Your Supplies\n\n");
+                        printf("oxen                %.0f\n", Oxen);
+                        printf("sets of clothing    %.0f\n", Clothing);
+                        printf("bullets             %.0f\n", Bullets);
+                        printf("wagon wheels        %.0f\n", Wagon_Wheel);
+                        printf("wagon axles         %.0f\n", Wagon_Axle);     //needs more work
+                        printf("wagon tongues       %.0f\n", Wagon_Tongue);
+                        printf("pounds of food      %.0f\n", Food);
+                        printf("Money               %.2f\n", Money_Total);
+                        printf("\n\n\n");
+
+                        if(r == 1)
+                        {
+                        int d = 2;
+                                if(Oxen >= d)
+                                {
+                                        printf("Do you want to sell 2 Oxen for $40 each? Y or N\n");
+                                        scanf(" %c", &yes_or_no);
+                                        if(yes_or_no == 'y' || yes_or_no == 'Y')
+                                        {
+                                                New_Line();
+                                                printf("\nYou have sold 2 Oxen for $40 each!\n");
+                                                Oxen -= 2;
+                                                Money_Total += 80;
+                                                usleep(1*1000000);
+                                        }
+                                        if(yes_or_no == 'n' || yes_or_no == 'N')
+                                        {
+                                                New_Line();
+                                                printf("\nHopefully you can find a better deal somewhere else.\n");
+                                                usleep(1*1000000);
+                                        }
+                                }
+                                if(Oxen < d)
+                                {
+                                        New_Line();
+                                        printf("You don't have enough oxen to trade.\n");
+                                        usleep(1*1000000);
+                                }
+                        }
+                        if(r == 2)
+                        {
+                        int d = 3;
+                                if(Clothing >= d)
+                                {
+                                        printf("Do you want to sell 3 sets of clothing for $50 each?\n");
+                                        scanf(" %c", &yes_or_no);
+                                        if(yes_or_no == 'y' || yes_or_no == 'Y')
+                                        {
+                                                New_Line();
+                                                printf("\nYou have sold 3 sets of clothing for $50 each!\n");
+                                                Clothing -= 3;
+                                                Money_Total += 150;
+                                                usleep(1*1000000);
+                                        }
+                                        if(yes_or_no == 'n' || yes_or_no == 'N')
+                                        {
+                                                New_Line();
+                                                printf("\nHopefully you can find a better deal somewhere else.\n");
+                                                usleep(1*1000000);
+                                        }
+                                if(Clothing < d)
+                                {
+                                        New_Line();
+                                        printf("You don't have enough Clothing to trade.\n");
+                                        usleep(1*1000000);
+                                }
+                                }
+                        }
+
+                        if(r == 3)
+                        {
+                        int d = 200;
+                                if(Food >= d)
+                                {
+                                        printf("Do you want to sell 200 pounds of food for $.50 each?\n");
+                                        scanf(" %c", &yes_or_no);
+                                        if(yes_or_no == 'y' || yes_or_no == 'Y')
+                                        {
+                                                New_Line();
+                                                printf("\nYou have sold 200 pounds of food for $.50 each!\n");
+                                                Food -= 200;
+                                                Money_Total += 100;
+                                                usleep(1*1000000);
+                                        }
+                                        if(yes_or_no == 'n' || yes_or_no == 'N')
+                                        {
+                                                New_Line();
+                                                printf("\nHopefully you can find a better deal somewhere else.\n");
+                                                usleep(1*1000000);
+                                        }
+                                if(Food < d)
+                                {
+                                        New_Line();
+                                        printf("You don't have enough Food to trade.\n");
+                                        usleep(1*1000000);
+                                }
+                                }
+
+                        }
+
+}
+void Main_Menu_Talk()
+{
+                        New_Line();
+                        int r = rand() % 3;
+                        r += 1;
+
+                        if(r == 1)
+                        {
+                                printf("A traveler, Miles Hendricks,\n");
+                                printf("tells you:\n\n");
+                                printf("Did you read the Missouri\n");
+                                printf("Republican today? --Says some\n");
+                                printf("folk start for Oregon without\n");
+                                printf("carrying spare parts, not even\n");
+                                printf("an extra wagon axle. Must\n");
+                                printf("think they grow on trees! Hope\n");
+                                printf("they're lucky enough to find an\n");
+                                printf("abandoned wagon.\n\n\n");
+                                usleep(5*1000000);
+                        }
+                        if(r == 2)
+                        {
+                                printf("A town resident tells you:\n\n");
+                                printf("Some folks seem to think that\n");
+                                printf("two oxen are enough to get them\n");
+                                printf("to Oregon! Two oxen can barely\n");
+                                printf("move a fully loaded wagon, and\n");
+                                printf("if one of them gets sick or\n");
+                                printf("dies, you won't be going\n");
+                                printf("anywhere. I wouldn't go\n");
+                                printf("overland with less than six.\n\n\n");
+                                usleep(5*1000000);
+                        }
+                        if(r == 3)
+                        {
+                                printf("A trader named Jim tells you:\n\n");
+                                printf("Better take extra sets of\n");
+                                printf("clothing. Trade 'em to Indians\n");
+                                printf("for fresh vegetables, fish, or\n");
+                                printf("meat. It's well worth hiring\n");
+                                printf("an Indian guide at river\n");
+                                printf("crossings. Expect to pay them!\n");
+                                printf("They're sharp traders, not\n");
+                                printf("easily cheated.\n\n\n");
+                                usleep(5*1000000);
+                        }
+                        New_Line();
+}
+void Main_Menu_Shop()
+{
+                        New_Line();
+                        int choice;
+                        float Bill = Oxen * 20 + Food * .2 + Clothing * 10 + Ammunition * 2 + Spare_parts * 10;
+                        Money_Total = money - Bill;
+                        printf("You may buy:\n\n");
+                        printf(" 1. Oxen                 $20.00 per ox\n");
+                        printf(" 2. Clothing             $10.00 per set\n");
+                        printf(" 3. Ammunition            $2.00 per box\n");
+                        printf(" 4. Wagon wheels         $10.00 per wheel\n");
+                        printf(" 5. Wagon axles          $10.00 per axle\n");
+                        printf(" 6. Wagon tongues        $10.00 per tongue\n");
+                        printf(" 7. Food                  $0.20 per pound\n");
+                        printf(" 8. Leave store\n\n");
+                        printf("You have $%.2f to spend.\n", Money_Total);
+                        printf("Which number ");
+                        scanf("%1d", &choice);
+                        if(choice == 1)
+                        {
+                                float plus_oxen;
+                                printf("\nHow many oxen? ");
+                                scanf("%3f", &plus_oxen);
+                                Oxen += plus_oxen;
+                        }
+                        if(choice == 2)
+                        {
+                                float plus_Clothing;
+                                printf("\nHow many sets? ");
+                                scanf("%3f", &plus_Clothing);
+                                Clothing += plus_Clothing;
+
+                        }
+                        if(choice == 3)
+                        {
+                                float plus_Ammunition;
+                                printf("\nHow many boxes? ");
+                                scanf("%3f", &plus_Ammunition);
+                                Ammunition += plus_Ammunition;
+
+                        }
+                        if(choice == 4)
+                        {
+                                float plus_Wheels;
+                                printf("\nHow many wheels? ");
+                                scanf("%3f", &plus_Wheels);
+                                Wagon_Wheel += plus_Wheels;
+
+                        }
+                        if(choice == 5)
+                        {
+                                float plus_Axles;
+                                printf("\nHow many axles? ");
+                                scanf("%3f", &plus_Axles);
+                                Wagon_Axle += plus_Axles;
+
+                        }
+                        if(choice == 6)
+                        {
+                                float plus_Tongues;
+                                printf("\nHow many tongues? ");
+                                scanf("%3f", &plus_Tongues);
+                                Wagon_Tongue += plus_Tongues;
+
+                        }
+                        if(choice == 7)
+                        {
+                                float plus_Food;
+                                printf("\nHow many pounds? ");
+                                scanf("%5f", &plus_Food);
+                                Food += plus_Food;
+
+                        }
+                        if(choice == 8)
+                        {
+
+                        }
+}
+void Main_Menu()
+{
+        Main_Menu_Display();
+        if(Menu_choice == 2)
+                {
+                        Main_Menu_Supplies();
+                }
+        if(Menu_choice == 3)
+                {
+                        Main_Menu_Map();
+                }
+        if(Menu_choice == 4)
+                {
+                        Main_Menu_Pace();
+                }
+        if(Menu_choice == 5)
+                {
+                        Main_Menu_Rations();
+                }
+        if(Menu_choice == 6)
+                {
+                        Main_Menu_Rest();
+                }
+        if(Menu_choice == 7)
+                {
+                        Main_Menu_Trading();
+                }
+        if(Menu_choice == 8)
+                {
+                        Main_Menu_Talk();
+                }
+        if(Menu_choice == 9)
+                {
+                        Main_Menu_Shop();
+                }
+        New_Line();
+}
+
+void Month_Print()
+{
+        if(month == 13)
+        {
+                char Months[20] = "January";
+                printf("%s", Months);
+        }
+        if(month == 14)
+        {
+                char Months[20] = "February";
+                printf("%s", Months);
+        }
+        if(month == 3 || month == 15)
+        {
+                char Months[20] = "March";
+                printf("%s", Months);
+        }
+        if(month == 4 || month == 16)
+        {
+                char Months[20] = "April";
+                printf("%s", Months);
+        }
+        if(month == 5 || month == 17)
+        {
+                char Months[20] = "May";
+                printf("%s", Months);
+        }
+        if(month == 6 || month == 18)
+        {
+                char Months[20] = "June";
+                printf("%s", Months);
+        }
+        if(month == 7 || month == 19)
+        {
+                char Months[20] = "July";
+                printf("%s", Months);
+        }
+        if(month == 8 || month == 20)
+        {
+                char Months[20] = "August";
+                printf("%s", Months);
+        }
+        if(month == 9 || month == 21)
+        {
+                char Months[20] = "September";
+                printf("%s", Months);
+        }
+        if(month == 10 || month == 22)
+        {
+                char Months[20] = "October";
+                printf("%s", Months);
+        }
+        if(month == 11 || month == 23)
+        {
+                char Months[20] = "November";
+                printf("%s", Months);
+        }
+        if(month == 12 || month == 24)
+        {
+                char Months[20] = "December";
+                printf("%s", Months);
+        }
+}
+void Weather()
+{
+        if(month == 13)
+        {
+                printf("\033[33m");
+                printf("Hot");
+                printf("\033[0m");
+        }
+        if(month == 14)
+        {
+                printf("\033[33m");
+                printf("Hot");
+                printf("\033[0m");
+        }
+        if(month == 3 || month == 15)
+        {
+                printf("\033[33m");
+                printf("Hot");
+                printf("\033[0m");
+        }
+        if(month == 4 || month == 16)
+        {
+                printf("\033[33m");
+                printf("Hot");
+                printf("\033[0m");
+        }
+        if(month == 5 || month == 17)
+        {
+                printf("\033[36m");
+                printf("cool");
+                printf("\033[0m");
+        }
+        if(month == 6 || month == 18)
+        {
+                printf("\033[36m");
+                printf("cool");
+                printf("\033[0m");
+        }
+        if(month == 7 || month == 19)
+        {
+                printf("\033[36m");
+                printf("cool");
+                printf("\033[0m");
+        }
+        if(month == 8 || month == 20)
+        {
+                printf("\033[36m");
+                printf("cool");
+                printf("\033[0m");
+        }
+        if(month == 9 || month == 21)
+        {
+                printf("\033[34m");
+                printf("cold");
+                printf("\033[0m");
+        }
+        if(month == 10 || month == 22)
+        {
+                printf("\033[34m");
+                printf("cold");
+                printf("\033[0m");
+        }
+        if(month == 11 || month == 23)
+        {
+                printf("\033[34m");
+                printf("cold");
+                printf("\033[0m");
+        }
+        if(month == 12 || month == 24)
+        {
+                printf("\033[34m");
+                printf("cold");
+                printf("\033[0m");
+        }
+}
+void Miles_Traveled()
+{
+        if(pace == 1)
+        {
+                Miles += (Speed * 2);
+                Next_Landmark_Counter = 20;
+        }
+        if(pace == 2)
+        {
+                Miles += (Speed * 3);
+                Next_Landmark_Counter = 15;
+        }
+        if(pace == 3)
+        {
+                Miles += (Speed * 4);
+                Next_Landmark_Counter = 10;
+        }
+}
+
+
+void Speed_Decrease()
+{
+        if(Wagon_Wheel == -1) //if they only have 3 wheels
+        {
+                Speed = 5;
+        }
+        if(Wagon_Wheel != -1) //if they have every wheel.
+        {
+                Speed = 10;
+                Do_Not_Print_Wheels = 0;
+        }
+        if(Wagon_Axle == -1) //if they only have No Axle
+        {
+                Speed = 5;
+        }
+        if(Wagon_Axle != -1) //if they have an Axle.
+        {
+                Speed = 10;
+                Do_Not_Print_Axles = 0;
+        }
+        if(Wagon_Tongue == -1) //if they only have No Tongue
+        {
+                Speed = 5;
+        }
+        if(Wagon_Tongue != -1) //if they have a tongue.
+        {
+                Speed = 10;
+                Do_Not_Print_Tongues = 0;
+        }
+}
+
+
+
+void Oregon_Miles()
+{
+        Oregon = 2000 - Miles;
+        printf("%d", Oregon);
+}
+
+void HotBar()
+{
+        Everyone_Is_Dead();
+        Food_Equals_Zero();
+        printf("                            Date: ");
+        Month_Print();
+        Day_Print();
+        printf("                         Weather: ");
+        Weather();
+        printf("\n");
+        printf("                          Health: ");
+        Average_Health_Print();
+        printf("\n");
+        printf("                            Food: %.0f pounds\n", Food);
+        printf("                          Oregon: ");
+        Oregon_Miles();
+        printf(" Miles\n");
+        printf("                  Miles traveled: %d Miles", Miles);
+        Miles_Traveled();
+        printf("\n");
+        Month_Updater();
+        Food_Updater();
+        Consequences();
+        Counter++;
+        usleep(2.5*1000000);
+        New_Line();
+}
+void Day_Print()
+{
+        Main_Day = Day_Count % 30;
+        Main_Day += 1;
+//      Main_Day - 1;
+        printf(" %d, 1848\n", Main_Day);
+        Day_Count++;
+}
+void Month_Updater()
+{
+        //Update = 30
+        if(Day_Count == Update)
+        {
+                month += 1;
+                Update += 30;
+        }
+}
+void Average_Health_Print()
+{
+        Average = (Player_1_Health + Player_2_Health + Player_3_Health + Player_4_Health + Player_5_Health);
+        if(Average >= 425)
+        {
+                printf("\033[32m");
+                printf("good");
+                printf("\033[0m");
+        }
+        else if(Average >= 350)
+        {
+                printf("\033[32m");
+                printf("OK");
+                printf("\033[0m");
+        }
+        else if(Average >= 275)
+        {
+                printf("\033[33m");
+                printf("Fair");
+                printf("\033[0m");
+        }
+        else if(Average >= 200)
+        {
+                printf("\033[31m");
+                printf("Poor");
+                printf("\033[0m");
+        }
+        else if(Average >= 125)
+        {
+                printf("\033[31m");
+                printf("Bad");
+                printf("\033[0m");
+        }
+        else if(Average >= -1000)
+        {
+                printf("\033[31m");
+                printf("Critical");
+                printf("\033[0m");
+        }
+}
+void Pace_Print()
+{
+        if(pace == 1)
+        {
+                printf("\033[32m");
+                printf("steady");
+                printf("\033[0m");
+        }
+        if(pace == 2)
+        {
+                printf("\033[33m");
+                printf("strenuous");
+                printf("\033[0m");
+
+        }
+        if(pace == 3)
+        {
+                printf("\033[31m");
+                printf("grueling");
+                printf("\033[0m");
+        }
+}
+void Pace_Change()
+{
+        if(Pace_Change_Choice == 1)
+                {
+                        pace = 1;
+                }
+        if(Pace_Change_Choice == 2)
+                {
+                        pace = 2;
+                }
+        if(Pace_Change_Choice == 3)
+                {
+                        pace = 3;
+                }
+        if(Pace_Change_Choice == 4)
+                {
+                        New_Line();
+                        printf("\033[32m");
+                        printf("steady");
+                        printf("\033[0m");
+                        printf(" - You travel about 8 hours a\n");
+                        printf("day, taking frequent rests. You take\n");
+                        printf("care not to get too tired.\n");
+
+                        printf("\033[33m");
+                        printf("strenuous");
+                        printf("\033[0m");
+                        printf(" - You travel about 12 hours\n");
+                        printf("a day, starting just after sunrise\n");
+                        printf("and stopping shortly before sunset.\n");
+                        printf("You stop to rest only when necessary.\n");
+                        printf("You finish each day feeling very tired.\n");
+
+                        printf("\033[31m");
+                        printf("grueling");
+                        printf("\033[0m");
+                        printf(" - You travel about 16 hours\n");
+                        printf("a day, starting before sunrise and\n");
+                        printf("continuing until dark. You almost\n");
+                        printf("never stop to rest.  You do not get\n");
+                        printf("enough sleep at night. You finsih\n");
+                        printf("each day feeling absolutely\n");
+                        printf("exhausted, and your health suffers.\n");
+                        usleep(5*1000000);  //move this time up, when done working on it
+                }
+}
+void Rations_Print()
+{
+        if(rations == 1)
+        {
+                printf("\033[32m");
+                printf("filling");
+                printf("\033[0m");
+        }
+        if(rations == 2)
+        {
+                printf("\033[33m");
+                printf("meager");
+                printf("\033[0m");
+        }
+        if(rations == 3)
+        {
+                printf("\033[31m");
+                printf("bare bones");
+                printf("\033[0m");
+        }
+}
+void Food_Updater()
+{
+        int Player_1_Food = 0;
+        int Player_2_Food = 0;
+        int Player_3_Food = 0;
+        int Player_4_Food = 0;
+        int Player_5_Food = 0;
+
+        if(rations == 1) //filling
+        {
+                if(Player_1_Alive = 1)
+                {
+                        Player_1_Food = 5;
+                }
+                if(Player_2_Alive = 1)
+                {
+                        Player_2_Food = 5;
+                }
+                if(Player_3_Alive = 1)          // 5 food per person a day
+                {
+                        Player_3_Food = 5;
+                }
+                if(Player_4_Alive = 1)
+                {
+                        Player_4_Food = 5;
+                }
+                if(Player_5_Alive = 1)
+                {
+                        Player_5_Food = 5;
+                }
+        }
+        if(rations == 2) //meager
+        {
+                if(Player_1_Alive = 1)
+                {
+                        Player_1_Food = 3;
+                }
+                if(Player_2_Alive = 1)
+                {
+                        Player_2_Food = 3;
+                }
+                if(Player_3_Alive = 1)                  // 3 food per person a day
+                {
+                        Player_3_Food = 3;
+                }
+                if(Player_4_Alive = 1)
+                {
+                        Player_4_Food = 3;
+                }
+                if(Player_5_Alive = 1)
+                {
+                        Player_5_Food = 3;
+                }
+        }
+        if(rations == 3) //bare bones
+        {
+                if(Player_1_Alive = 1)
+                {
+                        Player_1_Food = 1;
+                }
+                if(Player_2_Alive = 1)
+                {
+                        Player_2_Food = 1;
+                }
+                if(Player_3_Alive = 1)                  // 1 food per person a day
+                {
+                        Player_3_Food = 1;
+                }
+                if(Player_4_Alive = 1)
+                {
+                        Player_4_Food = 1;
+                }
+                if(Player_5_Alive = 1)
+                {
+                        Player_5_Food = 1;
+                }
+        }
+        Consumption = Player_1_Food + Player_2_Food + Player_3_Food + Player_4_Food + Player_5_Food;
+        Food -= Consumption;
+}
+
+
+//steady pace is 20 miles a day
+
+
+
+
+
+
+void Transition_Rotation()
+{
+        if(Transition_Increment % 2 ==   1)
+        {
+                if(Transition_Increment == 1)
+                {
+                        New_Line();
+                }
+                Transition_Part_1();
+                Transition_Increment += 1;
+        }
+        else
+        {
+                Transition_Part_2();
+                Transition_Increment += 1;
+                //add a counter right here then i can count the amount of times this loops has ran.
+        }
+}
+void Transition_1()
+{
+        int r = rand() % 2;
+        r += 1;
+
+        if(r == 1)
+        {
+                Transition_Rotation(); //not being used, try to fix this later
+        }
+        if(r == 2)
+        {
+                Transition_Rotation();
+        }
+}
+void River_Transition_Printer()
+{
+        if(River_Increment == 1)
+        {
+                River_Transition_Part_1();
+        }
+        if(     River_Increment == 2)
+        {
+                River_Transition_Part_2();
+        }
+        if(River_Increment == 3)
+        {
+                River_Transition_Part_3();
+        }
+        if(River_Increment == 4)
+        {
+                River_Transition_Part_4();
+        }
+        River_Increment++;
+}
+void Main_Menu_Hunting()
+{
+        while(Hunting_Choice != 6)
+        {
+        New_Line();
+        printf("Food isn't easy to come by, you have a better chance going for smaller animals.\n");
+        printf("Ammunition Boxes = %.0f\n", Ammunition);
+        printf("Food = %.0f\n", Food);
+        printf(" 1. Squirrels\n");
+        printf(" 2. Rabbit\n");
+        printf(" 3. Deer\n");
+        printf(" 4. Bison\n");
+        printf(" 5. Bear\n");
+        printf(" 6. Hunting is Overrated\n\n");
+        printf("What is your choice ");
+        scanf("%d", &Hunting_Choice);
+        New_Line();
+        if(Ammunition == 0)
+        {
+                printf("You don't have enough ammunition\n");
+                Hunting_Choice = 6;
+                usleep(1.5*1000000);
+        }
+                if(Hunting_Choice == 1)
+                {
+                        int ran = rand() % 8;
+                        ran += 1;
+                        printf("You have killed %d Squirrels\n", ran);
+                        Ammunition -= ran;
+                        if(Ammunition <= 0)
+                        {
+                                Ammunition = 0;
+                        }
+                        Food += (ran * 5);
+                        Food_2000_Max();
+                        Hunting_Choice = 0;
+                        usleep(1.5*1000000);
+                }
+                if(Hunting_Choice == 2)
+                {
+                        int i = rand() % 5;
+                        i += 1;
+                        if(i == 1 || i == 2 || i == 3 || i == 4) //makes a 4/5 chance of success
+                        {
+                                int ran = rand() % 4;   //picks the amount of animals killed.
+                                ran += 1;
+                                printf("You have killed %d Rabbits\n", ran);
+                                Ammunition -= (ran * 2);  //takes away ammunition for the kill
+                                if(Ammunition <= 0)
+                                {
+                                        Ammunition = 0; // keeps ammunition from going negative
+                                }
+                                Food += (ran * 20); //Adds food
+                                Food_2000_Max();  //Keeps food at the 2000 pound max
+                                Hunting_Choice = 0;  //resets the choice
+                                usleep(1.5*1000000);
+                        }
+                        else
+                        {
+                                printf("You havn't found any Rabbits\n");
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                }
+                if(Hunting_Choice == 3)
+                {
+                        int i = rand() % 3;
+                        i += 1;
+                        if(i == 1 || i == 2)
+                        {
+                                int ran = rand() % 2;
+                                ran += 1;
+                                printf("You have killed %d Deer\n", ran);
+                                Ammunition -= (ran * 3);
+                                if(Ammunition <= 0)
+                                {
+                                        Ammunition = 0;
+                                }
+                                Food += (ran * 100);
+                                Food_2000_Max();
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                        else
+                        {
+                                printf("You havn't found any Deer\n");
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                }
+                if(Hunting_Choice == 4)
+                {
+                        int i = rand() % 4;
+                        i += 1;
+                        if(i == 1 || i == 2)
+                        {
+                                int ran = rand() % 2;
+                                ran += 1;
+                                printf("You have killed %d Bison\n", ran);
+                                Ammunition -= (ran * 3);
+                                if(Ammunition <= 0)
+                                {
+                                        Ammunition = 0;
+                                }
+                                Food += (ran * 250);
+                                Food_2000_Max();
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                        else
+                        {
+                                printf("You havn't found any Bison\n");
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                }
+                if(Hunting_Choice == 5)
+                {
+                        int i = rand() % 5;
+                        i += 1;
+                        if(i == 1 || i == 2)
+                        {
+                                int ran = 1;
+                                printf("YOU HAVE TAKEN DOWN A BEAR!\n");
+                                Ammunition -= (ran * 5);
+                                if(Ammunition <= 0)
+                                {
+                                        Ammunition = 0;
+                                }
+                                Food += (ran * 1000);
+                                Food_2000_Max();
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                        else
+                        {
+                                printf("Maybe try some easier prey\n");
+                                Hunting_Choice = 0;
+                                usleep(1.5*1000000);
+                        }
+                }
+        }
+}
+void Food_2000_Max()
+{
+        if(Food >= 2000)
+        {
+                Food = 2000;
+        }
+}
+void Main_Menu_Display_2()
+{
+        Food_Equals_Zero();
+        Hunting_Choice = 0;
+        New_Line();
+        printf("      River Crossing\n");
+        printf("      ");
+        Month_Print();
+        printf(" %d, 1848\n", Main_Day);
+        printf("Weather: ");
+        Weather();
+        printf("\n");
+        printf("Health: ");
+        Average_Health_Print();
+        printf("\n");
+        printf("Pace: ");
+        Pace_Print();
+        printf("\n");
+        printf("Rations: ");
+        Rations_Print();
+        printf("\n");
+        printf("You may:\n");
+        printf("  1. Continue on trail\n");
+        printf("  2. Check supplies\n");
+        printf("  3. Look at map\n");
+        printf("  4. Change pace\n");
+        printf("  5. Change food rations\n");
+        printf("  6. Stop to rest\n");
+        printf("  7. Attempt to trade\n");
+        printf("  8. Talk to people\n");
+        printf("  9. Hunt for food\n\n");
+        printf("What is your choice? ");
+        scanf("%1d", &Menu_choice);
+}
+void River_Main_Menu()
+{
+        Main_Menu_Display_2();
+        if(Menu_choice == 2)
+                {
+                        Main_Menu_Supplies();
+                }
+        if(Menu_choice == 3)
+                {
+                        Main_Menu_Map();
+                }
+        if(Menu_choice == 4)
+                {
+                        Main_Menu_Pace();
+                }
+        if(Menu_choice == 5)
+                {
+                        Main_Menu_Rations();
+                }
+        if(Menu_choice == 6)
+                {
+                        Main_Menu_Rest();
+                }
+        if(Menu_choice == 7)
+                {
+                        Main_Menu_Trading();
+                }
+        if(Menu_choice == 8)
+                {
+                        Main_Menu_Talk();
+                }
+        if(Menu_choice == 9)
+                {
+                        Main_Menu_Hunting();
+                }
+}
+void Random_River_Dimentions()
+{
+        float myMax_1 = 999;
+        float myMin_1 = 160;
+        float myMax_2 = 9.0;
+        float myMin_2 = 2.0;
+        River_Width = (float)rand() / (float)(RAND_MAX/(myMax_1 - myMin_1)) + myMin_1;
+        River_Height = (float)rand() / (float)(RAND_MAX/(myMax_2 - myMin_2)) + myMin_2;
+}
+void River_Crossing_Intro()
+{
+        New_Line();
+        Random_River_Dimentions();
+        printf("               River Crossing\n");
+        printf("               ");
+        Month_Print();
+        printf(" %d, 1848\n\n", Main_Day);
+        printf("You must cross the river in order to continue.\n");
+        printf("The river at this point is currently %.0f feet accross,\n", River_Width);
+        printf("and %.1f feet deep in the middle\n", River_Height);
+        Press_Enter();
+}
+void River_Crossing()
+{
+        while(River_Reprint == 1)
+{
+        New_Line();
+        printf("               River Crossing\n");
+        printf("               ");
+        Month_Print();
+        printf(" %d, 1848\n", Main_Day);
+        printf("Weather: ");
+        Weather();
+        printf("\n");
+        printf("River width %.0f feet\n", River_Width);
+        printf("River depth %.1f feet\n", River_Height);
+        printf("You may:\n");
+        printf("  1. attempt to ford the river\n");
+        printf("  2. caulk the wagon and float it across\n");
+        printf("  3. take a ferry across\n");
+        printf("  4. wait to see if conditions imporove\n");
+        printf("  5. get more information\n\n");
+        printf("What is your choice? ");
+        scanf("%d", &River_Choice);
+
+        if(River_Choice == 1)
+        {
+                if(River_Width < 550 && River_Height < 4.5)
+                {
+                        New_Line();
+                        printf("\033[32m");
+                        printf("You have made it safly across the river!\n");
+                        printf("\033[0m");
+                        usleep(2.4*1000000);
+                        River_Reprint = 0;
+                }
+                else
+                {
+                        New_Line();
+                        printf("\033[31m");
+                        printf("You did not make it across the river!\n\n\n");
+                        printf("\033[0m");
+                        printf("You have lost:\n");
+                        Lost_River_Items();
+                        usleep(5*1000000);
+                        River_Reprint = 0;
+                        //add lost stuff and death in another function.
+                }
+        }
+        if(River_Choice == 2)
+        {
+                int Random_Chance = rand() % 4;
+                Random_Chance += 1;
+                if(Random_Chance == 1)
+                {
+                        New_Line();
+                        printf("\033[32m");
+                        printf("You have made it safly across the river!\n");
+                        printf("\033[0m");
+                        usleep(2.4*1000000);
+                        River_Reprint = 0;
+                }
+                if(Random_Chance == 2)
+                {
+                        New_Line();
+                        printf("\033[32m");
+                        printf("You have made it safly across the river!\n");
+                        printf("\033[0m");
+                        usleep(2.4*1000000);
+                        River_Reprint = 0;
+                }
+                if(Random_Chance == 3)
+                {
+                        New_Line();
+                        printf("\033[32m");
+                        printf("You have made it safly across the river!\n");
+                        printf("\033[0m");
+                        usleep(2.4*1000000);
+                        River_Reprint = 0;
+                }
+                if(Random_Chance == 4)
+                {
+                        New_Line();
+                        printf("\033[31m");
+                        printf("You did not make it across the river!\n");
+                        printf("\033[0m");
+                        printf("You have lost:\n");
+                        Lost_River_Items();
+                        usleep(3*1000000);
+                        River_Reprint = 0;
+                        //add consequences
+                }
+        }
+        if(River_Choice == 3)
+        {
+                float Max_1 = 100.00;
+                float Min_1 = 25.00;
+                Pay_Ferry_Owner = (float)rand() / (float)(RAND_MAX/(Max_1 - Min_1)) + Min_1;
+                if(Money_Total > Pay_Ferry_Owner)
+                {
+                        New_Line();
+                        printf("The Ferry costed you ");
+                        printf("\033[32m");
+                        printf("$%.2f", Pay_Ferry_Owner);
+                        printf("\033[0m");
+                        printf(" dollars.\n", Pay_Ferry_Owner);
+                        Money_Total - Pay_Ferry_Owner;
+                        usleep(2.5*1000000);
+                        River_Reprint = 0;
+                }
+                if(Money_Total < Pay_Ferry_Owner)
+                {
+                        printf("\n\n\nYou do not have enough money to pay the ferry owner!\n\n\n");
+                        usleep(1.5*1000000);
+                }
+        }
+        if(River_Choice == 4)
+        {
+                float myMax_1 = 999;
+                float myMin_1 = 160;
+                float myMax_2 = 9.0;
+                float myMin_2 = 2.0;
+
+                New_Line();
+                printf("     River Crossing\n");
+                printf("     ");
+                Month_Print();
+                printf(" %d, 1848\n", Main_Day);
+                printf("\nYou camp near the river for a day\n\n");
+                River_Width = (float)rand() / (float)(RAND_MAX/(myMax_1 - myMin_1)) + myMin_1; //Makes a new river Width
+                River_Height = (float)rand() / (float)(RAND_MAX/(myMax_2 - myMin_2)) + myMin_2; //Makes a new river Height
+                Press_Enter();
+                Main_Day++;
+        }
+        if(River_Choice == 5)
+        {
+                New_Line();
+                printf("     River Crossing\n");
+                printf("     ");
+                Month_Print();
+                printf(" %d, 1848\n", Main_Day);
+                printf("To ford a river means to\n");
+                printf("pull your wagon across a\n");
+                printf("shallow part of the river,\n");
+                printf("with the oxen still attached\n\n");
+                usleep(2*1000000);
+
+                New_Line();
+                printf("     River Crossing\n");
+                printf("     ");
+                Month_Print();
+                printf(" %d, 1848\n", Main_Day);
+                printf("To caulk the wagon means to\n");
+                printf("seal it so that no water can\n");
+                printf("get in. The wagon can then\n");
+                printf("be floated across like a boat.\n\n");
+                usleep(2*1000000);
+
+                New_Line();
+                printf("     River Crossing\n");
+                printf("     ");
+                Month_Print();
+                printf(" %d, 1848\n", Main_Day);
+                printf("Use the a ferry means to put\n");
+                printf("your wagon on top of a flat\n");
+                printf("boat that belongs to someone else.\n");
+                printf("The owner of the ferry will take\n");
+                printf("your wagon across the river.\n\n");
+                usleep(2*1000000);
+        }
+        }
+        New_Line();
+        River_Reprint = 1;
+}
+void Lost_River_Items()
+{
+        int Stop1 = 0;
+        int Stop2 = 0;
+        int Stop3 = 0;
+        int Stop4 = 0;
+        int Stop5 = 0;
+        int Done_Something_1 = 0;
+        int Done_Something_2 = 0;
+        int Done_Something_3 = 0;
+        int Done_Something_4 = 0;
+        int Done_Something_5 = 0;
+        int Total_Done = 0;
+
+
+
+        for(int i = 0; i < 3; i++)
+        {
+                int ran = rand() % 5; //makes a number 1-5
+                ran += 1;
+                if(ran == 1)
+                {
+                        if(Stop1 == 0) //makes sure it doesn't go down the same path.
+                        {
+                                Stop1 += 1;
+                                if(Oxen > 1) //Find out if you can afford to lose these things.
+                                {
+                                        printf(" - 1 Oxen\n");
+                                        Oxen -= 1;
+                                        Done_Something_1 += 1;
+                                }
+                        }
+                }
+                if(ran == 2)
+                {
+                        if(Stop2 == 0)
+                        {
+                                Stop2 += 1;
+                                if(Food > 150)
+                                {
+                                        int i = rand() % 100;
+                                        i += 25;
+                                        printf(" - %d Food\n", i);
+                                        Food -= i;
+                                        Done_Something_2 += 1;
+                                }
+                        }
+                }
+                if(ran == 3)
+                {
+                        if(Stop3 == 0)
+                        {
+                                Stop3 += 1;
+                                if(Clothing > 4)
+                                {
+                                        int i = rand() % 3;
+                                        i += 1;
+                                        printf(" - %d Sets of Clothing\n", i);
+                                        Clothing -= i;
+                                        Done_Something_3 += 1;
+                                }
+                        }
+                }
+                if(ran == 4)
+                {
+                        if(Stop4 == 0)
+                        {
+                                Stop4 += 1;
+                                if(Ammunition > 30)
+                                {
+                                        int i = rand() % 14;
+                                        i += 12;
+                                        printf(" - %d Ammunition\n", i);
+                                        Ammunition -= i;
+                                        Done_Something_4 += 1;
+                                }
+                        }
+                }
+                if(ran == 5)
+                {
+                        if(Stop5 == 0)
+                        {
+                                Stop5 += 1;
+                                if(Money_Total > 100)
+                                {
+                                        float i = rand() % 20;
+                                        i += 65;
+                                        printf(" - $%.2f Dollars\n", i);
+                                        Money_Total -= i;
+                                        Done_Something_5 += 1;
+                                }
+                        }
+                }
+        }
+                Total_Done = Done_Something_1 + Done_Something_2 + Done_Something_3 + Done_Something_4 + Done_Something_5;
+                if(Total_Done == 0)
+                {
+                        printf(" - Nothing\n");
+                }
+}
+int Everyone_Is_Dead()
+{
+        if(Player_1_Health <= 0 && Player_2_Health <= 0 && Player_3_Health <= 0 && Player_4_Health <= 0 && Player_5_Health <= 0)
+        {
+                Everyone_Dead_Loss = 1;
+                return 1;
+        }
+        else
+        {
+                return 0;
+        }
+}
+int Out_Of_Oxen()
+{
+        if(Oxen == 0)
+        {
+                Oxen_Loss = 1;
+                return 1;
+        }
+        else
+        {
+                return 0;
+        }
+}
+
+void Consequences()
+{
+        Rations_Health_Updater();
+        Pace_Health_Updater();
+        Weather_Health_Updater();
+        Food_Killer();
+        Death_Printer();
+        Player_Sickness_Updater();
+        Player_Sickness_Printer();
+        Player_Sickness_Damage();
+        Player_Sickness_Recovery();
+        Player_Health_Equals_Zero();
+        Freak_Accidents();  //2a
+        Speed_Decrease();  //2b
+
+
+//      Average = (Player_1_Health + Player_2_Health + Player_3_Health + Player_4_Health + Player_5_Health);
+//      printf("%.0f\n", Average);
+//      printf("Player 1 heath = %.0f\n", Player_1_Health);
+//      printf("Player 2 heath = %.0f\n", Player_2_Health);
+//      printf("Player 3 heath = %.0f\n", Player_3_Health);
+//      printf("Player 4 heath = %.0f\n", Player_4_Health);
+//      printf("Player 5 heath = %.0f\n", Player_5_Health);
+//      printf("Food Counter = %d\n", Food_Counter);
+
+
+}
+void Freak_Accidents()
+{
+        int i = rand() % 12;
+        i += 1;
+        if(i ==  1)
+        {
+                int ran = rand() % 4;
+                ran += 1;
+                if(ran == 1)  //oxen
+                {
+                        printf("------");
+                        printf("\033[1;31m");
+                        printf("An oxen has died...");
+                        printf("\033[0m");
+                        printf("\033[1;32m");
+                        printf(" Good News! You have gained 500 food!"); //if you run out of oxen you loss and tell the user that so they know!!!
+                        printf("\033[0m");
+                        printf("------\n");
+                        Oxen -= 1;
+                        Food += 500;
+                        Food_2000_Max();
+                        usleep(5*1000000);
+                if(Oxen_Reminder == 0) //one time reminder
+                {
+                        printf("--------------");
+                        printf("\033[36m");
+                        printf("Lose both your starting oxen = GAME OVER");
+                        printf("\033[0m");
+                        printf("--------------\n");
+                        Oxen_Reminder = 1; //only prints one time
+                        usleep(5*1000000);
+                }
+                }
+                if(ran == 2) //wheels
+                {
+                        if(Do_Not_Print_Wheels == 1)  //if they are already down too 3 wheels don't do this punishment again.
+                        {
+
+                        }
+                        else
+                        {
+                                Wagon_Wheel -= 1;  //takes away a wagon wheel
+
+                                if(Wagon_Wheel == -1)   //if they don't have any spare wheels
+                                {
+                                        printf("-----------");
+                                        printf("\033[1;31m");
+                                        printf("A wheel has been distoryed you only have"); //add comments
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        Wagon_Wheel = 0; //makes it print 0 wheels instead of -1
+                                        printf(" %.0f", Wagon_Wheel);
+                                        Wagon_Wheel = -1;
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("----------\n");
+                                        Do_Not_Print_Wheels = 1;
+                                        usleep(5*1000000);
+
+                                        printf("--------");
+                                        printf("\033[1;31m");
+                                        printf("Your down to 3 wheels! Make sure you buy another one!");
+                                        printf("\033[0m");
+                                        printf("--------\n");
+                                        usleep(5*1000000);
+                                }
+                                else
+                                {
+                                        printf("----------");
+                                        printf("\033[1;31m");
+                                        printf("A wheel has been distoryed you only have");    //if they have extra
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        printf(" %.0f", Wagon_Wheel);
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("---------\n");
+                                        usleep(5*1000000);
+                                }
+                        }
+                }
+                if(ran == 3) //Axles
+                {
+                        if(Do_Not_Print_Axles == 1)  //if they are already down too 3 wheels don't do this punishment again.
+                        {
+
+                        }
+                        else
+                        {
+                                Wagon_Axle -= 1;  //takes away a wagon wheel
+
+                                if(Wagon_Axle == -1)   //if they don't have any spare wheels
+                                {
+
+                                        printf("---------");
+                                        printf("\033[1;31m");
+                                        printf("An axle has been distoryed! You only have");
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        printf(" %.0f", Wagon_Axle);
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("---------\n");
+                                        Do_Not_Print_Axles = 1;
+                                        usleep(5*1000000);
+
+                                        printf("----------");
+                                        printf("\033[1;31m");
+                                        printf("You have no Axle! Make sure you buy another one!");
+                                        printf("\033[0m");
+                                        printf("----------\n");
+                                        usleep(5*1000000);
+                                }
+                                else
+                                {
+                                        printf("---------");
+                                        printf("\033[1;31m");
+                                        printf("An axle has been distoryed! You only have");
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        printf(" %.0f", Wagon_Axle);
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("---------\n");
+                                        usleep(5*1000000);
+                                }
+                        }
+                }
+                if(ran == 4) //Tongues
+                {
+                        if(Do_Not_Print_Tongues == 1)  //stops from punishing again punishment again.
+                        {
+
+                        }
+                        else
+                        {
+                                Wagon_Tongue -= 1;  //takes away a wagon tongue
+
+                                if(Wagon_Tongue == -1)   //if they don't have any spare tongues
+                                {
+
+                                        printf("---------");
+                                        printf("\033[1;31m");
+                                        printf("A Tongue has been distoryed! You only have");
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        printf(" %.0f", Wagon_Tongue);
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("--------\n");
+                                        Do_Not_Print_Tongues = 1;
+                                        usleep(5*1000000);
+
+                                        printf("---------");
+                                        printf("\033[1;31m");
+                                        printf("You have no Tongue! Make sure you buy another one!");
+                                        printf("\033[0m");
+                                        printf("---------\n");
+                                        usleep(5*1000000);
+                                }
+                                else
+                                {
+                                        printf("---------");
+                                        printf("\033[1;31m");
+                                        printf("A Tongue has been distoryed! You only have");
+                                        printf("\033[0m");
+                                        printf("\033[31m");
+                                        printf(" %.0f", Wagon_Tongue);
+                                        printf("\033[0m");
+                                        printf("\033[1;31m");
+                                        printf(" left.");
+                                        printf("\033[0m");
+                                        printf("--------\n");
+                                        usleep(5*1000000);
+
+                                }
+                        }
+                }
+        }
+}
+void Disease_Name_Print()
+{
+        if(Disease_Name == 1)
+        {
+                printf("Dysentery");
+        }
+        if(Disease_Name == 2)   //finish
+        {
+                printf("Smallpox");
+        }
+        if(Disease_Name == 3)
+        {
+                printf("Measles");
+        }
+        if(Disease_Name == 4)
+        {
+                printf("Mumps");
+        }
+        if(Disease_Name == 5)
+        {
+                printf("Influenza");
+        }
+}
+void Player_Sickness_Recovery()
+{
+        if(Player_1_Recovery == 1)
+        {
+                printf("--------------");
+                printf("\033[1;32m");
+                printf("%s has recoved from ", leader);
+                Disease_Name_Print();
+                printf("\033[0m");
+                printf("--------------");
+                printf("\n");
+                Player_1_Recovery = 0;
+        }
+        if(Player_2_Recovery == 1)
+        {
+                printf("--------------");
+                printf("\033[1;32m");
+                printf("%s has recoved from ", Player1);
+                Disease_Name_Print();
+                printf("\033[0m");
+                printf("--------------");
+                printf("\n");
+                Player_2_Recovery = 0;
+        }
+        if(Player_3_Recovery == 1)
+        {
+                printf("--------------");
+                printf("\033[1;32m");
+                printf("%s has recoved from ", Player2);
+                Disease_Name_Print();
+                printf("\033[0m");
+                printf("--------------");
+                printf("\n");
+                Player_3_Recovery = 0;
+        }
+        if(Player_4_Recovery == 1)
+        {
+                printf("--------------");
+                printf("\033[1;32m");
+                printf("%s has recoved from ", Player3);
+                Disease_Name_Print();
+                printf("\033[0m");
+                printf("--------------");
+                printf("\n");
+                Player_4_Recovery = 0;
+        }
+        if(Player_5_Recovery == 1)
+        {
+                printf("--------------");
+                printf("\033[1;32m");
+                printf("%s has recoved from ", Player4);
+                Disease_Name_Print();
+                printf("\033[0m");
+                printf("--------------");
+                printf("\n");
+                Player_5_Recovery = 0;
+        }
+}
+void Player_Health_Equals_Zero()
+{
+        if(Player_1_Health <= 0)
+        {
+                Player_1_Health = 0;
+        }
+        if(Player_2_Health <= 0)
+        {
+                Player_2_Health = 0;
+        }
+        if(Player_3_Health <= 0)
+        {
+                Player_3_Health = 0;
+        }
+        if(Player_4_Health <= 0)
+        {
+                Player_4_Health = 0;
+        }
+        if(Player_5_Health <= 0)
+        {
+                Player_5_Health = 0;
+        }
+}
+void Player_Sickness_Damage()
+{
+        if(Player_1_Disease != 0)
+        {
+                Player_1_Health -= 2;
+                Day_Counter1 += 1;
+        //      printf("Day_Counter1 = %d\n", Day_Counter1);
+                if(Day_Counter1 == 7)
+                {
+                        Player_1_Disease = 0;
+                        Player_1_Recovery = 1;
+                        Day_Counter1 = 0;
+                }
+        }
+        if(Player_2_Disease != 0)
+        {
+                Player_2_Health -= 2;
+                Day_Counter2 += 1;
+        //      printf("Day_Counter2 = %d\n", Day_Counter2);
+                if(Day_Counter2 == 7)
+                {
+                        Player_2_Disease = 0;
+                        Player_2_Recovery = 1;
+                        Day_Counter2 = 0;
+                }
+        }
+        if(Player_3_Disease != 0)
+        {
+                Player_3_Health -= 2;
+                Day_Counter3 += 1;
+        //      printf("Day_Counter3 = %d\n", Day_Counter3);
+                if(Day_Counter3 == 7)
+                {
+                        Player_3_Disease = 0;
+                        Player_3_Recovery = 1;
+                        Day_Counter3 = 0;
+                }
+        }
+        if(Player_4_Disease != 0)
+        {
+                Player_4_Health -= 2;
+                Day_Counter4 += 1;
+        //      printf("Day_Counter4 = %d\n", Day_Counter4);
+                if(Day_Counter4 == 7)
+                {
+                        Player_4_Disease = 0;
+                        Player_4_Recovery = 1;
+                        Day_Counter4 = 0;
+                }
+        }
+        if(Player_5_Disease != 0)
+        {
+                Player_5_Health -= 2; //removes health from the player.
+                Day_Counter5 += 1;
+        //      printf("Day_Counter5 = %d\n", Day_Counter5);
+                if(Day_Counter5 == 7) //in 7 days they will recover.
+                {
+                        Player_5_Disease = 0; //ends the damage.
+                        Player_5_Recovery = 1; //signals the print recovery statement (player1 is now healthy!)
+                        Day_Counter5 = 0;
+                }
+        }
+
+}
+void Random_Player_Print()
+{
+int Retry = 1;
+while(Retry == 1)
+        {
+                int ran = rand() % 5;
+                ran += 1;   //prints a random player
+                if(ran == 1)
+                {
+                        if(Player_1_Disease == 1) //if the player already has a disease it will try again.
+                        {
+                                Retry = 1;
+                        }
+                        if(Player_1_Health <= 0)
+                        {
+                                Retry = 1;
+                        }
+                        else
+                        {
+                                printf("%s", leader);
+                                Player_1_Disease += 1; //adds up the amount of diseases each player has.
+                                Retry = 0;
+                        }
+                }
+                if(ran == 2)
+                {
+                        if(Player_2_Disease == 1)
+                        {
+                                Retry = 1;
+                        }
+                        if(Player_2_Health <= 0)
+                        {
+                                Retry = 1;
+                        }
+                        else
+                        {
+                                printf("%s", Player1);
+                                Player_2_Disease += 1;
+                                Retry = 0;
+                        }
+                }
+                if(ran == 3)
+                {
+                        if(Player_3_Disease == 1)
+                        {
+                                Retry = 1;
+                        }
+                        if(Player_3_Health <= 0)
+                        {
+                                Retry = 1;
+                        }
+                        else
+                        {
+                                printf("%s", Player2);
+                                Player_3_Disease += 1;
+                                Retry = 0;
+                        }
+                }
+                if(ran == 4)
+                {
+                        if(Player_4_Disease == 1)
+                        {
+                                Retry = 1;
+                        }
+                        if(Player_4_Health <= 0)
+                        {
+                                Retry = 1;
+                        }
+                        else
+                        {
+                                printf("%s", Player3);
+                                Player_4_Disease += 1;
+                                Retry = 0;
+                        }
+                }
+                if(ran == 5)
+                {
+                        if(Player_5_Disease == 1)
+                        {
+                                Retry = 1;
+                        }
+                        if(Player_5_Health <= 0)
+                        {
+                                Retry = 1;
+                        }
+                        else
+                        {
+                                printf("%s", Player4);
+                                Player_5_Disease += 1;
+                                Retry = 0;
+                        }
+                }
+        }
+}
+void Player_Sickness_Printer()
+{
+        if(Dysentery == 1)
+        {
+                printf("----------------------");
+                printf("\033[1;31m");
+                Random_Player_Print();
+                printf(" has Dysentery!");
+                printf("\033[0m");
+                printf("----------------------");
+                printf("\n");
+                Disease_Name = 1;
+                Dysentery = 0;
+        }
+        if(Smallpox == 1)
+        {
+                printf("----------------------");
+                printf("\033[1;31m");
+                Random_Player_Print();
+                printf(" has Smallpox!");
+                printf("\033[0m");
+                printf("----------------------");
+                printf("\n");
+                Disease_Name = 2;
+                Smallpox = 0;
+        }
+        if(Measles == 1)
+        {
+                printf("----------------------");
+                printf("\033[1;31m");
+                Random_Player_Print();
+                printf(" has Measles!");
+                printf("\033[0m");
+                printf("----------------------");
+                printf("\n");
+                Disease_Name = 3;
+                Measles = 0;
+        }
+        if(Mumps == 1)
+        {
+                printf("----------------------");
+                printf("\033[1;31m");
+                Random_Player_Print();
+                printf(" has Mumps!");
+                printf("\033[0m");
+                printf("----------------------");
+                printf("\n");
+                Disease_Name = 4;
+                Mumps = 0;
+        }
+        if(Influenza == 1)
+        {
+                printf("----------------------");
+                printf("\033[1;31m");
+                Random_Player_Print();
+                printf(" has Influenza!");
+                printf("\033[0m");
+                printf("----------------------");
+                printf("\n");
+                Disease_Name = 5;
+                Influenza = 0;
+        }
+
+
+}
+void Player_Sickness_Updater()
+{
+//check if it is poor health
+//random number
+//add sickness
+        int sick = 0;
+        if(Average <= 350)
+        {
+                int i = rand() % 11; //the probability of getting sick
+                i += 1;
+                if(i == 1)
+                {
+                        sick = 1;
+                }
+                else
+                {
+                        sick = 0;
+                }
+                        if(sick == 1)
+                        {
+                                int Sickness = rand() % 5; //picks the sickness
+                                Sickness += 1;
+                                if(Sickness == 1)// add an and maybe
+                                {
+                                        Dysentery = 1;
+                                }
+                                if(Sickness == 2)
+                                {
+                                        Smallpox = 1;
+                                }
+                                if(Sickness == 3)
+                                {
+                                        Measles = 1;
+                                }
+                                if(Sickness == 4)
+                                {
+                                        Mumps = 1;
+                                }
+                                if(Sickness == 5)
+                                {
+                                        Influenza = 1;
+                                }
+                        }
+        }
+}
+void Death_Printer()
+{
+
+        if(Single_Print_1 == 0)
+        {
+                if(Player_1_Health <= 0)
+                {
+                        printf("Player 1 has died\n");
+                        Single_Print_1 = 1;
+                }
+        }
+        if(Single_Print_2 == 0)
+        {
+                if(Player_2_Health <= 0)
+                {
+                        printf("Player 2 has died\n");
+                        Single_Print_2 = 1;
+                }
+        }
+        if(Single_Print_3 == 0)
+        {
+                if(Player_3_Health <= 0)
+                {
+                        printf("Player 3 has died\n");
+                        Single_Print_3 = 1;
+                }
+        }
+        if(Single_Print_4 == 0)
+        {
+                if(Player_4_Health <= 0)
+                {
+                        printf("Player 4 has died\n");
+                        Single_Print_4 = 1;
+                }
+        }
+        if(Single_Print_5 == 0)
+        {
+                if(Player_5_Health <= 0)
+                {
+                        printf("Player 5 has died\n");
+                        Single_Print_5 = 1;
+                }
+        }
+}
+
+void Food_Killer()
+{
+
+        if(Food <= 0)
+        {
+                Food_Counter += 1;
+        }
+        if(Food >= 0)
+        {
+                Food_Counter = 0;
+        }
+        if(Food_Counter == 1)
+        {
+                Player_1_Health -= 5;
+                Player_2_Health -= 5;
+                Player_3_Health -= 5;
+                Player_4_Health -= 5;
+                Player_5_Health -= 5;
+        }
+        if(Food_Counter == 2)
+        {
+                Player_1_Health -= 10;
+                Player_2_Health -= 10;
+                Player_3_Health -= 10;
+                Player_4_Health -= 10;
+                Player_5_Health -= 10;
+        }
+        if(Food_Counter == 3)
+        {
+                Player_1_Health -= 15;
+                Player_2_Health -= 15;
+                Player_3_Health -= 15;
+                Player_4_Health -= 15;
+                Player_5_Health -= 15;
+        }
+        if(Food_Counter == 4)
+        {
+                Player_1_Health -= 20;
+                Player_2_Health -= 20;
+                Player_3_Health -= 20;
+                Player_4_Health -= 20;
+                Player_5_Health -= 20;
+        }
+        if(Food_Counter == 5)
+        {
+                Player_1_Health -= 25;
+                Player_2_Health -= 25;
+                Player_3_Health -= 25;
+                Player_4_Health -= 25;
+                Player_5_Health -= 25;
+        }
+        if(Food_Counter == 6)
+        {
+                Player_1_Health -= 30;
+                Player_2_Health -= 30;
+                Player_3_Health -= 30;
+                Player_4_Health -= 30;
+                Player_5_Health -= 30;
+        }
+        if(Food_Counter == 7)
+        {
+                Player_1_Health -= 35;
+                Player_2_Health -= 35;
+                Player_3_Health -= 35;
+                Player_4_Health -= 35;
+                Player_5_Health -= 35;
+        }
+        if(Food_Counter == 8)
+        {
+                Player_1_Health -= 40;
+                Player_2_Health -= 40;
+                Player_3_Health -= 40;
+                Player_4_Health -= 40;
+                Player_5_Health -= 40;
+        }
+        if(Food_Counter == 9)
+        {
+                Player_1_Health -= 45;
+                Player_2_Health -= 45;
+                Player_3_Health -= 45;
+                Player_4_Health -= 45;
+                Player_5_Health -= 45;
+        }
+        if(Food_Counter == 10)
+        {
+                Player_1_Health -= 50;
+                Player_2_Health -= 50;
+                Player_3_Health -= 50;
+                Player_4_Health -= 50;
+                Player_5_Health -= 50;
+        }
+        if(Food_Counter > 10)
+        {
+                Player_1_Health -= 50;
+                Player_2_Health -= 50;
+                Player_3_Health -= 50;
+                Player_4_Health -= 50;
+                Player_5_Health -= 50;
+        }
+
+}
+void Weather_Health_Updater()
+{
+        if(month == 3 || month == 4 || month == 13 || month == 14 || month == 15 || month == 16)
+        {
+        //weather is hot
+                int r = rand() % 2;   //puts to either add or subtract
+                r += 1;
+                int end_retry = 0;
+                if(r == 1)
+                {
+                        while(end_retry == 0)
+                        {
+                                int ran = rand() % 5; //picks whos health to add to.
+                                ran += 1;
+                                if(ran == 1)
+                                {
+                                        if(Player_1_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_1_Health += 5;
+                                        }
+                                }
+                                if(ran == 2)
+                                {
+                                        if(Player_2_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_2_Health += 5;
+                                        }
+                                }
+                                if(ran == 3)
+                                {
+                                        if(Player_3_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_3_Health += 5;
+                                        }
+                                }
+                                if(ran == 4)
+                                {
+                                        if(Player_4_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_4_Health += 5;
+                                        }
+                                }
+                                if(ran == 5)
+                                {
+                                        if(Player_5_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_5_Health += 5;
+                                        }
+                                }
+                        }
+                }
+                if(r == 2)
+                {
+                        while(end_retry == 0)
+                        {
+                                int ran = rand() % 5; //picks whos health to subtract.
+                                ran += 1;
+
+                                if(ran == 1)
+                                {
+                                        if(Player_1_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_1_Health -= 5;
+                                        }
+                                }
+                                if(ran == 2)
+                                {
+                                        if(Player_2_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_2_Health -= 5;
+                                        }
+                                }
+                                if(ran == 3)
+                                {
+                                        if(Player_3_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_3_Health -= 5;
+                                        }
+                                }
+                                if(ran == 4)
+                                {
+                                        if(Player_4_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_4_Health -= 5;
+                                        }
+                                }
+                                if(ran == 5)
+                                {
+                                        if(Player_5_Health > 0) //looks to see if the player is dead
+                                        {
+                                                end_retry = 1;
+                                                Player_5_Health -= 5;
+                                        }
+                                }
+                        }
+                }
+        }
+        if(month == 5 || month == 6 || month == 7 || month == 8 || month == 17 || month == 18 || month == 19 || month == 20) //cool weather
+        {
+                //weather is cool
+                int retry = 0;
+                while(retry == 0)
+                {
+
+                        int ran = rand() % 5; //picks whos health to subtract.
+                        ran += 1;
+
+                        if(ran == 1)
+                        {
+                                if(Player_1_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Player_1_Health += 1;
+                                }
+                        }
+                        if(ran == 2)
+                        {
+                                if(Player_2_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Player_2_Health += 1;
+                                }
+                        }
+                        if(ran == 3)
+                        {
+                                if(Player_3_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Player_3_Health += 1;
+                                }
+                        }
+                        if(ran == 4)
+                        {
+                                if(Player_4_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Player_4_Health += 1;
+                                }
+                        }
+                        if(ran == 5)
+                        {
+                                if(Player_5_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Player_5_Health += 1;
+                                }
+                        }
+                }
+        }
+        if(month == 9 || month == 10 || month == 11 || month == 12 || month == 21 || month == 22 || month == 23 || month == 24)
+        {
+        //weather is cold
+                int retry = 0;
+                while(retry == 0)
+                {
+                        int ran = rand() % 5; //picks whos health to subtract.
+                        ran += 1;
+
+                        if(ran == 1)
+                        {
+                                if(Player_1_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Clothing_Weather_Damage_Updater();
+                                        Player_1_Health -= Cold_Minus;
+                                }
+                        }
+                        if(ran == 2)
+                        {
+                                if(Player_2_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Clothing_Weather_Damage_Updater();
+                                        Player_2_Health -= Cold_Minus;
+                                }
+                        }
+                        if(ran == 3)
+                        {
+                                if(Player_3_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Clothing_Weather_Damage_Updater();
+                                        Player_3_Health -= Cold_Minus;
+                                }
+                        }
+                        if(ran == 4)
+                        {
+                                if(Player_4_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Clothing_Weather_Damage_Updater();
+                                        Player_4_Health -= Cold_Minus;
+                                }
+                        }
+                        if(ran == 5)
+                        {
+                                if(Player_5_Health > 0) //looks to see if the player is dead
+                                {
+                                        retry = 1;
+                                        Clothing_Weather_Damage_Updater();
+                                        Player_5_Health -= Cold_Minus;
+                                }
+                        }
+                }
+        }
+}
+void Clothing_Weather_Damage_Updater()
+{
+        if(Clothing < 5)
+        {
+                Cold_Minus = 5;
+        }
+        if(Clothing >= 5)
+        {
+                Cold_Minus = 4;
+        }
+        if(Clothing >= 10)
+        {
+                Cold_Minus = 3;
+        }
+        if(Clothing >= 15)
+        {
+                Cold_Minus = 2;
+        }
+        if(Clothing >= 20)
+        {
+                Cold_Minus = 1;
+        }
+}
+void Rations_Health_Updater()
+{
+
+        int fedSomeone = 0;
+
+        if(rations == 1)
+        {
+                while(fedSomeone == 0)
+                {
+                        int r = rand() % 5;
+                        r += 1;
+
+                if(r == 1)
+                {
+                        if(Player_1_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_1_Health += 5;
+                        }
+                }
+                if(r == 2)
+                {
+                        if(Player_2_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_2_Health += 5;
+                        }
+                }
+                if(r == 3)
+                {
+                        if(Player_3_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_3_Health += 5;
+                        }
+                }
+                if(r == 4)
+                {
+                        if(Player_4_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_4_Health += 5;
+                        }
+                }
+                if(r == 5)
+                {
+                        if(Player_5_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_5_Health += 5;
+                        }
+                }
+                }
+        }
+        if(rations == 2)
+        {
+                //nothing changes
+        }
+        if(rations == 3)
+        {
+                while(fedSomeone == 0)
+                {
+                        int r = rand() % 5;
+                        r += 1;
+
+                if(r == 1)
+                {
+                        if(Player_1_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_1_Health -= 5;
+                        }
+                }
+                if(r == 2)
+                {
+                        if(Player_2_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_2_Health -= 5;
+                        }
+                }
+                if(r == 3)
+                {
+                        if(Player_3_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_3_Health -= 5;
+                        }
+                }
+                if(r == 4)
+                {
+                        if(Player_4_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_4_Health -= 5;
+                        }
+                }
+                if(r == 5)
+                {
+                        if(Player_5_Health > 0)
+                        {
+                                fedSomeone = 1;
+                                Player_5_Health -= 5;
+                        }
+                }
+                }
+        }
+}
+void Pace_Health_Updater()
+{
+
+        int fedSomeone = 0;
+
+        if(pace == 1)
+        {
+                //nothing changes
+        }
+        if(pace == 2)
+        {
+                while(fedSomeone == 0)
+                {
+
+                        int r = rand() % 5;
+                        r += 1;
+
+                        if(r == 1)
+                        {
+                                if(Player_1_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_1_Health -= 2;
+                                }
+                        }
+                        if(r == 2)
+                        {
+                                if(Player_2_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_2_Health -= 2;
+                                }
+                        }
+                        if(r == 3)
+                        {
+                                if(Player_3_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_3_Health -= 2;
+                                }
+                        }
+                        if(r == 4)
+                        {
+                                if(Player_4_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_4_Health -= 2;
+                                }
+                        }
+                        if(r == 5)
+                        {
+                                if(Player_5_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_5_Health -= 2;
+                                }
+                        }
+                }
+        }
+        if(pace == 3)
+        {
+                while(fedSomeone == 0)
+                {
+
+                        int r = rand() % 5;
+                        r += 1;
+
+                        if(r == 1)
+                        {
+                                if(Player_1_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_1_Health -= 5;
+                                }
+                        }
+                        if(r == 2)
+                        {
+                                if(Player_2_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_2_Health -= 5;
+                                }
+                        }
+                        if(r == 3)
+                        {
+                                if(Player_3_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_3_Health -= 5;
+                                }
+                        }
+                        if(r == 4)
+                        {
+                                if(Player_4_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_4_Health -= 5;
+                                }
+                        }
+                        if(r == 5)
+                        {
+                                if(Player_5_Health > 0)
+                                {
+                                        fedSomeone = 1;
+                                        Player_5_Health -= 5;
+                                }
+                        }
+                }
+        }
+}
+void Food_Equals_Zero()
+{
+        if(Food < 0)
+        {
+                Food = 0;
+        }
+}
+
+void Transition_Part_1()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -  ^   ^  ^  -  ^       ^  -  ^    ^        ^  -\n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -   ^   --  ^   ^   ^  - ^  _  ^ \n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|    __ ____      \n");
+        printf("                                               |o  |_     ───_ |     \n");
+        printf("                                                ^|___|--|______|     \n");
+        printf("\033[1;32m");
+        printf("_________________________________________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("_____ \n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("-------------------------------------------------------------------- \n");
+        printf("-------------------------------------------------------------------- \n");
+        printf("\033[0m");
+}
+void Transition_Part_2()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -   ^  -  ^ ^  -  ^  ^  -  ^       ^  -    _  ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -    --  ^   ^    ^    ^  _  -  ^\n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|   __ ____       \n");
+        printf("                                               |o  |_    ───_ |      \n");
+        printf("                                                ^|___|-|______|      \n");
+        printf("\033[1;32m");
+        printf("__________________________________________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("______ \n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("-------------------------------------------------------------------- \n");
+        printf("-------------------------------------------------------------------- \n");
+        printf("\033[0m");
+}
+void River_Transition_Part_1()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -   ^  -  ^ ^  -  ^  ^  -  ^       ^  -    _  ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -    --  ^   ^    ^    ^  _  -  ^\n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|    __ ____      \n");
+        printf("                                               |o  |_     ───_ |     \n");
+        printf("                                                ^|___|--|______|     \n");
+        printf("\033[34m");
+        printf("_____________");   //blue water
+        printf("\033[0m");
+        printf("\033[1;32m");
+        printf("____________________________________");  //green grass
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void River_Transition_Part_2()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -   ^  -  ^ ^  -  ^  ^  -  ^       ^  -    _  ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -    --  ^   ^    ^    ^  _  -  ^\n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|   __ ____       \n");
+        printf("                                               |o  |_    ───_ |      \n");
+        printf("                                                ^|___|-|______|      \n");
+        printf("\033[34m");
+        printf("_______________________");   //blue water   8 new lines per transition
+        printf("\033[0m");
+        printf("\033[1;32m");
+        printf("___________________________");  //green grass
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("_______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void River_Transition_Part_3()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -   ^  -  ^ ^  -  ^  ^  -  ^       ^  -    _  ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -    --  ^   ^    ^    ^  _  -  ^\n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|    __ ____       \n");
+        printf("                                               |o  |_     ───_ |      \n");
+        printf("                                                ^|___|--|______|      \n");
+        printf("\033[34m");
+        printf("_______________________________");   //blue water   added 8 new lines per transition
+        printf("\033[0m");
+        printf("\033[1;32m");
+        printf("__________________");  //green grass
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void River_Transition_Part_4()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -   ^  -  ^ ^  -  ^  ^  -  ^       ^  -    _  ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^   ^    ^   -    --  ^   ^    ^    ^  _  -  ^\n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                                _ _|   __ ____       \n");
+        printf("                                               |o  |_    ───_ |      \n");
+        printf("                                                ^|___|-|______|      \n");
+        printf("\033[34m");
+        printf("_______________________________________");   //blue water  added 8 new lines per transition
+        printf("\033[0m");
+        printf("\033[1;32m");
+        printf("___________");  //green grass
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("_______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+
+void Cabin_Transition_Printer()
+{
+        if(Cabin_Increment == 1)
+        {
+                Cabin_Transition_Part_1();
+        }
+        if(Cabin_Increment == 2)
+        {
+                Cabin_Transition_Part_2();
+        }
+        if(Cabin_Increment == 3)
+        {
+                Cabin_Transition_Part_3();
+        }
+        if(Cabin_Increment == 4)
+        {
+                Cabin_Transition_Part_4();
+        }
+        Cabin_Increment++;
+}
+
+void Cabin_Transition_Part_1()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -  ^       ^  -  ^   ^  - ^        _  ^ -  ^ - ^\n");
+        printf("^  ^  -  ^ _  ^ - ^ ^  ^    ^  _  ^   ^ -     - ^  _  ^   ^   ^ -    \n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("_                                               _ _|    __ ____      \n");
+        printf("_/\\                                            |o  |_     ───_ |     \n");
+        printf("| |  |=                                         ^|___|--|______|     \n");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___________________________________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void Cabin_Transition_Part_2()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^           - ^  -       - ^     -  ^  ^   ^  -          ^ -  ^\n");
+        printf("^  ^  -  ^ _    ^ - ^ ^  ^   ^  ^     ^ _     ^   ^ -   _  - ^    ^  \n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("         ______                                 _ _|   __ ____       \n");
+        printf("        /_____ /\\                              |o  |_    ───_ |      \n");
+        printf("        |     | |  |=                           ^|___|-|______|      \n");
+        printf("\033[1;32m");
+        printf("________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_____");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("______________________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("_______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void Cabin_Transition_Part_3()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -  ^ -  ^  -  ^  ^    ^         ^ -  ^  ^ ^  - ^\n");
+        printf("^  ^  -  ^ _  ^ - ^ ^   ^  _   ^ _   -  ^   ^ -   _  - ^ -   ^   ^   \n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                       ______                   _ _|    __ ____      \n");
+        printf("                      /_____ /\\                |o  |_     ───_ |     \n");
+        printf("                      |     | |  |=             ^|___|--|______|     \n");
+        printf("\033[1;32m");
+        printf("______________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_____");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_______________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("___");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void Cabin_Transition_Part_4()
+{
+        printf("\033[1;33m");
+        printf("^  -  ^         - ^  -  ^      ^  -  ^    ^   ^  -        ^ -  ^ - ^ \n");
+        printf("^  ^  -  ^ _  ^ - ^ ^ ^   ^  ^  _  ^     ^     ^ _      ^   ^ -   _  \n");
+        printf("|            - -  ^                                                  \n");
+        printf("\033[0m");
+        printf("                                ______          _ _|   __ ____       \n");
+        printf("                               /_____ /\\       |o  |_    ───_ |      \n");
+        printf("                               |     | |  |=    ^|___|-|______|      \n");
+        printf("\033[1;32m");
+        printf("_______________________________");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_____");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("_______");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("|");
+        printf("\033[1;32m");
+        printf("__");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("____");
+        printf("\033[0m");
+        printf("0");
+        printf("\033[1;32m");
+        printf("_______\n");
+        printf("\033[0m");
+        printf("\033[32m");
+        printf("---------------------------------------------------------------------\n");
+        printf("---------------------------------------------------------------------\n");
+        printf("\033[0m");
+}
+void Average_Health()
+{
+        Average = Player_1_Health + Player_2_Health + Player_3_Health + Player_4_Health + Player_5_Health;
+}
+
+void Transition_Mixer()
+{
+        Random_Transition = rand() % 5;
+        Random_Transition += 1;
+        Transition_Part_1();
+        HotBar();
+        Transition_Part_2();
+        HotBar();
+        printf("%d\n", Random_Transition);
+        if(Random_Transition == 1)
+        {
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+
+                }
+                else
+                {
+                        Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Transition_Part_2();
+                        HotBar();
+                }//insert Average Function
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Transition_Part_2();
+                        HotBar();
+                }
+        }
+        if(Random_Transition == 2)
+        {
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_2();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_3();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_4();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Arrival_Choices();
+                }
+        }
+        if(Random_Transition == 3)
+        {
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_2();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_3();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Transition_Part_4();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        River_Arrival_Choices();
+                }
+        }
+        if(Random_Transition == 4)
+        {
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_2();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_3();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_4();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Arrival_Choices();
+                }
+        }
+        if(Random_Transition == 5)
+        {
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_1();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_2();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_3();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Transition_Part_4();
+                        HotBar();
+                }
+                Average_Health();
+                if(Oxen == 0 || Average <= 0)
+                {
+                        //ends function
+                }
+                else
+                {
+                        Cabin_Arrival_Choices();
+                }
+        }
+}
+void River_Arrival_Choices()
+{
+        Menu_choice = 0;
+        while(Menu_choice != 1)
+        {
+                River_Main_Menu();
+        }
+                River_Crossing_Intro();
+                River_Crossing();
+}
+void Cabin_Arrival_Choices()
+{
+        Menu_choice = 0;
+        while(Menu_choice != 1)
+        {
+                Main_Menu();
+        }
+//      New_Line();
+}
+
+
+void New_Line()
+{
+        for(int i = 0; i < 50; i++)
+        {
+                printf("\n");
+        }
+}
+void Press_Enter()
+{
+        printf("\nPress ");
+        printf("\033[32m");
+        printf("ENTER");
+        printf("\033[0m");                //ask about this
+        printf(" to continue.\n");
+        if(Floating_Enter == 0)
+        {
+                fflush(stdin);
+                getchar();
+                getchar();
+        }
+        if(Floating_Enter == 1)
+        {
+                fflush(stdin);
+                getchar();
+        }
+}
+void Game_Over()
+{
+        if(Everyone_Dead_Loss == 1)
+        {
+                printf("EVERYONE IS DEAD\n");
+        }
+        if(Oxen_Loss == 1)
+        {
+                printf("YOU LOST ALL YOU OXEN\n");
+        }
+}
+void Made_It_To_Oregon()
+{
+        New_Line();
+        Transition_Part_1();
+        printf("\n\n\n\n\n\n");
+        usleep(2.5*1000000);
+        New_Line();
+        Transition_Part_2();
+        printf("\n\n\n\n\n\n");
+        usleep(2.5*1000000);
+        New_Line();
+        Transition_Part_1();
+        printf("\n\n\n\n\n\n");
+        usleep(2.5*1000000);
+        New_Line();
+        Transition_Part_2();
+        printf("\n\n\n\n\n\n");
+        usleep(2.5*1000000);
+        New_Line();
+        printf("Congratulations you made it to oregon!\n");
+        Skip_Death = 1;
+}
