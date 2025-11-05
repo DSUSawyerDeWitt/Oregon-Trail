@@ -1,3 +1,5 @@
 # Oregon-Trail
-This is a program I developed during my introductory Computer Science course after gaining foundational knowledge in C programming. I advise against replicating this code directly.
+- This is a program based on the 1971 game of Oregon Trail. It was the final project in my introductory Computer Science course. 
+- Learned about Variables, Functions, Random, Printing, Ect.
+- Ended up being over 4,000 lines of Code.
 ![Gameplay Demo](media/Oregon%20Trail%20GIF.gif)
